@@ -70,7 +70,7 @@
                         <nav class="nav-menus-wrapper">
                             <ul class="nav-menu">
                                 <li>
-                                    <a class="active" href="{% url 'index' %}">Home</a>
+                                    <a class="active" href="">Home</a>
                                     <!-- <ul class="nav-dropdown nav-submenu">
                                         <li><a href="index.html">Home 01</a></li>
                                         <li><a class="active" href="index-2.html">Home 02</a></li>
@@ -78,17 +78,17 @@
                                     </ul> -->
                                 </li>
                                 <li>
-                                    <a href="#">Courses</a>
-                                    <ul class="nav-dropdown nav-submenu">
+                                    <a href="{% url 'courses' %}">Courses</a>
+                                    <!-- <ul class="nav-dropdown nav-submenu">
                                         <li>
-                                            <a href="#">Courses Grid</a>
-                                            <ul class="nav-dropdown nav-submenu">
+                                            <a href="{% url 'courses' %}">Courses</a>
+                                            <!-- <ul class="nav-dropdown nav-submenu">
                                                 <li><a href="our-courses.html">Courses 01</a></li>
                                                 <li><a href="our-courses-2.html">Courses 02</a></li>
                                                 <li><a href="our-courses-3.html">Courses 03</a></li>
                                                 <li><a href="our-courses-left-sidebar.html">Courses Left Sidebar</a></li>
                                                 <li><a href="our-courses-right-sidebar.html">Courses Right Sidebar</a></li>
-                                            </ul>
+                                            </ul> 
                                         </li>  
                                         <li>
                                             <a href="#">Courses</a>
@@ -99,15 +99,10 @@
                                             </ul>
                                         </li>                                            
                                         <li><a href="courses-details.html">Courses Details</a></li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
                                 <li>
-                                    <a href="#">Events</a>
-                                    <ul class="nav-dropdown nav-submenu">
-                                        <li><a href="event.html">Event 01</a></li>
-                                        <li><a href="event-2.html">Event 02</a></li>
-                                        <li><a href="event-details.html">Event Details</a></li>
-                                    </ul>
+                                    <a href="{% url 'events' %}">Events</a>
                                 </li>
                                 <li>
                                     <a href="#">Pages</a>
@@ -125,22 +120,10 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#">Shop</a>
-                                    <ul class="nav-dropdown nav-submenu">
-                                        <li><a href="shop.html">Shop </a></li>
-                                        <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                        <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                        <li><a href="product-details.html">Shop Details</a></li>
-                                    </ul>
+                                    <a href="{% url 'teachers' %}">Teachers</a>
                                 </li>
                                 <li>
-                                    <a href="#">Blog</a>
-                                    <ul class="nav-dropdown nav-submenu">
-                                        <li><a href="blog.html">Blog </a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-right-sideba.html">Blog Right Sidebar</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                    </ul>
+                                    <a href="#">News</a>
                                 </li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
@@ -160,7 +143,6 @@
     </header>
 
     <!--====== Header Ends ======-->
-    
   <!--====== Slider Start ======-->
 
 <section class="slider-area slider-active">
@@ -232,121 +214,59 @@
 
     <!--====== About Ends ======-->
  <!--====== Top Courses Start ======-->
-
- <section class="top-courses-area">
+<section class="top-courses-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="section-title mt-40">
-                    <h2 class="title">Here is our <br> Top Courses</h2>
-                    <p>Here is out Top Courses</p>
+                    <h2 class="title">Here are our <br> Top Courses</h2>
+                    <p>Explore our Top Courses</p>
                 </div>
             </div>
         </div>
         <div class="courses-wrapper">
             <div class="row">
+                {% for course in courses %}
                 <div class="col-lg-3 col-sm-6 courses-col">
                     <div class="single-courses mt-30 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s">
-                        <a href="#" class="category">#Engineering</a>
-                        <h4 class="courses-title"><a href="courses-details.html">Computer Science & Engineering</a></h4>
+                        <a href="#" class="category">Engineering</a>
+                        <h4 class="courses-title"><a href="#">{{ course.name }}</a></h4>
                         <div class="duration-fee">
-                            <p class="duration">Duration: <span> 4 year</span></p>
-                            <!-- <p class="fee">Fee: <span> $540</span></p> -->
+                            <p class="duration">Duration: <span>{{ course.duration }}</span></p>
+                            {% if course.fee %}
+                            <p class="fee">Fee: <span> ${{ course.fee }}</span></p>
+                            {% endif %}
                         </div>
-                        <div class="rating">
-                            <span>Rating: </span>
-                            <ul class="star">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                            </ul>
+                        {% if course.credit %}
+                        <div class="credit">
+                            <span>Credit: </span>
+                            <p>{{ course.credit }}</p>
                         </div>
+                        {% endif %}
+                        {% if course.semester %}
+                        <div class="duration-fee">
+                            <p class="duration">Semester: <span>{{ course.semester }}</span></p>
+                            
+                          </div>
+                        {% endif %}
+                        {% if course.image %}
+                        <div class="course-image">
+                            <img src="{{ course.image.url }}" alt="{{ course.name }}">
+                        </div>
+                        {% endif %}
                         <div class="courses-link">
                             <!-- <a class="apply" href="#">Online Apply</a> -->
-                            <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
+                            <a class="more" href="#">Read more <i class="fas fa-long-arrow-alt-right"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6 courses-col">
-                    <div class="single-courses mt-30 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.4s">
-                        <a href="#" class="category">#engineering</a>
-                        <h4 class="courses-title"><a href="courses-details.html">Electronics  <br>and Communications</a></h4>
-                        <div class="duration-fee">
-                            <p class="duration">Duration: <span> 4 year</span></p>
-                            <!-- <p class="fee">Fee: <span> $540</span></p> -->
-                        </div>
-                        <div class="rating">
-                            <span>Rating: </span>
-                            <ul class="star">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                            </ul>
-                        </div>
-                        <div class="courses-link">
-                            <!-- <a class="apply" href="#">Online Apply</a> -->
-                            <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 courses-col">
-                    <div class="single-courses mt-30 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.6s">
-                        <a href="#" class="category">#Engineering</a>
-                        <h4 class="courses-title"><a href="courses-details.html">Civil Engineering</a></h4>
-                        <div class="duration-fee">
-                            <p class="duration">Duration: <span> 4 year</span></p>
-                            <!-- <p class="fee">Fee: <span> $540</span></p> -->
-                        </div>
-                        <div class="rating">
-                            <span>Rating: </span>
-                            <ul class="star">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                            </ul>
-                        </div>
-                        <div class="courses-link">
-                            <!-- <a class="apply" href="#">Online Apply</a> -->
-                            <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 courses-col">
-                    <div class="single-courses mt-30 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="1.6s">
-                        <a href="#" class="category">#Engineering</a>
-                        <h4 class="courses-title"><a href="courses-details.html">Electrical and Electronics Engineering.</a></h4>
-                        <div class="duration-fee">
-                            <p class="duration">Duration: <span> 4 year</span></p>
-                            <!-- <p class="fee">Fee: <span> $540</span></p> -->
-                        </div>
-                        <div class="rating">
-                            <span>Rating: </span>
-                            <ul class="star">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                            </ul>
-                        </div>
-                        <div class="courses-link">
-                            <!-- <a class="apply" href="#">Online Apply</a> -->
-                            <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
 </section>
+<!--====== Top Courses End ======-->
 
-<!--====== Top Courses Ends ======-->
 
     <!--====== Campus Start ======-->
 
