@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from .chatbot import chatbot
+from .models import SliderImage, Event
 
 from django.http import HttpResponse
 
-
 def home(request):
-    return render(request, 'index.html')
+    sliders = SliderImage.objects.all()
+    events = Event.objects.all()
+    return render(request, 'index.html', {'sliders': sliders, 'events': events})
+
 def index(request):
     return render(request, 'home.html')
 

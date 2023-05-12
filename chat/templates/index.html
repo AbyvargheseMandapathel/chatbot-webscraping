@@ -6,46 +6,44 @@
     <meta charset="utf-8">
     
     <!--====== Title ======-->
-    <title>Edumate Education HTML Template</title>
+    <title>College Of engineering Kidangoor</title>
     
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{% static 'assets/images/favicon.webp' %}" type="image/webp">
+    <link rel="shortcut icon" href="{% static '/images/favicon.webp' %}" type="image/webp">
     
         
     <!-- CSS
     ============================================ -->
 
     <!--===== Vendor CSS (Bootstrap & Icon Font) =====-->
-    <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/default.css">
+    <link rel="stylesheet" href="{% static '/css/plugins/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/plugins/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/plugins/default.css' %}">
 
 
     <!--===== Plugins CSS (All Plugins Files) =====-->
-    <link rel="stylesheet" href="assets/css/plugins/animate.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/slick.css">
-    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="{% static '/css/plugins/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/plugins/slick.css' %}">
+    <link rel="stylesheet" href="{% static '/css/plugins/magnific-popup.css' %}">
 
     <!--====== Main Style CSS ======-->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.min.css' %}">
     
 </head>
 
 <body>
-    
     <!--====== Header Start ======-->
-
     <header class="header-area">
         <div class="header-top">
             <div class="container">
                 <div class="header-top-wrapper d-flex flex-wrap justify-content-sm-between">
                     <div class="header-top-left mt-10">
                         <ul class="header-meta">
-                            <li><a href="mailto://infoedumate@example.com">infoedumate@example.com</a></li>
+                            <li><a href="mailto://cekcape@gmail.com">cekcape@gmail.com</a></li>
                         </ul>
                     </div>
                     <div class="header-top-right mt-10">
@@ -64,7 +62,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3">
                         <div class="header-logo">
-                            <a href="index-2.html"><img src="assets/images/logo.webp" width="135" height="88" alt="Logo"></a>
+                            <a href="index-2.html"><img src="assets/images/CEK.png" width="250" height="88" alt="Logo"></a>
                         </div>
                     </div>
                     <div class="col-lg-7 position-static">
@@ -72,12 +70,12 @@
                         <nav class="nav-menus-wrapper">
                             <ul class="nav-menu">
                                 <li>
-                                    <a class="active" href="#">Home</a>
-                                    <ul class="nav-dropdown nav-submenu">
+                                    <a class="active" href="{% url 'index' %}">Home</a>
+                                    <!-- <ul class="nav-dropdown nav-submenu">
                                         <li><a href="index.html">Home 01</a></li>
                                         <li><a class="active" href="index-2.html">Home 02</a></li>
                                         <li><a href="index-3.html">Home 03</a></li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
                                 <li>
                                     <a href="#">Courses</a>
@@ -163,47 +161,28 @@
 
     <!--====== Header Ends ======-->
     
-    <!--====== Slider Start ======-->
+  <!--====== Slider Start ======-->
 
-    <section class="slider-area slider-02 slider-active">
-        <div class="single-slider d-flex align-items-center bg_cover" style="background-image: url(assets/images/slider-2-1.webp);">
-            <div class="container">
-                <div class="slider-content slider-content-2">
-                    <h2 class="title" data-animation="fadeInLeft" data-delay="0.2s">Education is the power of Humanity</h2>
-                    <ul class="slider-btn">
-                        <li><a data-animation="fadeInLeft" data-delay="0.6s" class="main-btn main-btn-2" href="our-courses-left-sidebar.html">View Courses</a></li>
-                        <li><a data-animation="fadeInLeft" data-delay="1s" class="main-btn" href="#">Learn more</a></li>
-                    </ul>
-                </div>
-            </div>
+<section class="slider-area slider-active">
+    {% for slider in sliders %}
+    <div class="single-slider d-flex align-items-center bg_cover" style="background-image: url({{ slider.image.url }});">
+      <div class="container">
+        <div class="slider-content">
+          <!-- <h2 class="title" data-animation="fadeInLeft" data-delay="0.2s">Education is the most powerful Weapon</h2> -->
+          <ul class="slider-btn">
+            <li><a data-animation="fadeInUp" data-delay="0.6s" class="main-btn main-btn-2" href="about-us.html">About Us</a></li>
+            <li><a data-animation="fadeInUp" data-delay="1s" class="main-btn" href="#">Contact Us</a></li>
+          </ul>
         </div>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  
+  <!--====== Slider Ends ======-->
 
-        <div class="single-slider d-flex align-items-center bg_cover" style="background-image: url(assets/images/slider-2-2.webp);">
-            <div class="container">
-                <div class="slider-content slider-content-2">
-                    <h2 class="title" data-animation="fadeInLeft" data-delay="0.2s">Education is the power of Humanity</h2>
-                    <ul class="slider-btn">
-                        <li><a data-animation="fadeInLeft" data-delay="0.6s" class="main-btn main-btn-2" href="our-courses-left-sidebar.html">View Courses</a></li>
-                        <li><a data-animation="fadeInLeft" data-delay="1s" class="main-btn" href="#">Learn more</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
 
-        <div class="single-slider d-flex align-items-center bg_cover" style="background-image: url(assets/images/slider-2-3.webp);">
-            <div class="container">
-                <div class="slider-content slider-content-2">
-                    <h2 class="title" data-animation="fadeInLeft" data-delay="0.2s">Education is the power of Humanity</h2>
-                    <ul class="slider-btn">
-                        <li><a data-animation="fadeInLeft" data-delay="0.6s" class="main-btn main-btn-2" href="our-courses-left-sidebar.html">View Courses</a></li>
-                        <li><a data-animation="fadeInLeft" data-delay="1s" class="main-btn" href="#">Learn more</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--====== Slider Ends ======-->
+  
     
     <!--====== About Start ======-->
 
@@ -212,16 +191,16 @@
             <div class="row align-items-center">
                 <div class="col-lg-5">
                     <div class="about-content mt-40">
-                        <h2 class="about-title">Best <span>Educational</span> Environment</h2>
+                        <h2 class="about-title">Welcome  <!--<span>Educational</span> Environment--></h2>
                         <span class="line"></span>
-                        <p>Even slightly believable. If you are going use passage of Lorem Ipsum need desire to obtain pain of itself, because it is pain de sires many pain of itself occur for your study <br> <br> Even slightly believable. If you are going use passage of Lorem Ipsum need desir</p>
+                        <p>CEK (College of Engineering, Kidangoor) in Kottayam is a premier institution governed by the Co-operative Academy of Professional Education established by the Government of Kerala. Admissions are based on state entrance examination rankings, and the college operates according to Government of Kerala regulations. CEK boasts excellent academic and extracurricular records, thanks to outstanding faculty and facilities.</p>
                         <a href="#" class="main-btn">Explore</a>
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="about-image mt-50">
                         <div class="single-image image-1">
-                            <img src="assets/images/about/about-1.webp" width="290" height="290" alt="about">
+                            <img src="assets/images/banner/about-1.webp" width="290" height="290" alt="about">
                         </div>
                         <div class="single-image image-2">
                             <img src="assets/images/about/about-2.webp" width="225" height="225" alt="about">
@@ -252,224 +231,122 @@
     </section>
 
     <!--====== About Ends ======-->
+ <!--====== Top Courses Start ======-->
 
-    <!--====== Features Start ======-->
-
-    <div class="features-area-2 ">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-4">
-                    <div class="features-image-2">
-                        <img class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s" src="assets/images/features-2.webp" width="342" height="524" alt="Features">
+ <section class="top-courses-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="section-title mt-40">
+                    <h2 class="title">Here is our <br> Top Courses</h2>
+                    <p>Here is out Top Courses</p>
+                </div>
+            </div>
+        </div>
+        <div class="courses-wrapper">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 courses-col">
+                    <div class="single-courses mt-30 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <a href="#" class="category">#Engineering</a>
+                        <h4 class="courses-title"><a href="courses-details.html">Computer Science & Engineering</a></h4>
+                        <div class="duration-fee">
+                            <p class="duration">Duration: <span> 4 year</span></p>
+                            <!-- <p class="fee">Fee: <span> $540</span></p> -->
+                        </div>
+                        <div class="rating">
+                            <span>Rating: </span>
+                            <ul class="star">
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
+                        <div class="courses-link">
+                            <!-- <a class="apply" href="#">Online Apply</a> -->
+                            <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="features-items">
-                        <div class="features-items-wrapper">
-                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s">
-                                <div class="item-icon">
-                                    <img src="assets/images/icon/icon-2-1.webp" width="70" height="70" alt="Icon">
-                                </div>
-                                <div class="item-content media-body">
-                                    <p>250+ <br> Courses</p>
-                                </div>
-                            </div>
-                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.4s">
-                                <div class="item-icon">
-                                    <img src="assets/images/icon/icon-2-2.webp" width="70" height="70" alt="Icon">
-                                </div>
-                                <div class="item-content media-body">
-                                    <p>Skill Based  <br> Scholarships</p>
-                                </div>
-                            </div>
-                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.6s">
-                                <div class="item-icon">
-                                    <img src="assets/images/icon/icon-2-3.webp" width="70" height="70" alt="Icon">
-                                </div>
-                                <div class="item-content media-body">
-                                    <p>Online <br> Education</p>
-                                </div>
-                            </div>
+                <div class="col-lg-3 col-sm-6 courses-col">
+                    <div class="single-courses mt-30 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.4s">
+                        <a href="#" class="category">#engineering</a>
+                        <h4 class="courses-title"><a href="courses-details.html">Electronics  <br>and Communications</a></h4>
+                        <div class="duration-fee">
+                            <p class="duration">Duration: <span> 4 year</span></p>
+                            <!-- <p class="fee">Fee: <span> $540</span></p> -->
                         </div>
-
-                        <div class="features-items-wrapper">
-                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s">
-                                <div class="item-icon">
-                                    <img src="assets/images/icon/icon-2-4.webp" width="70" height="70" alt="Icon">
-                                </div>
-                                <div class="item-content media-body">
-                                    <p>Expert <br> Teachers</p>
-                                </div>
-                            </div>
-                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.4s">
-                                <div class="item-icon">
-                                    <img src="assets/images/icon/icon-2-5.webp" width="70" height="70" alt="Icon">
-                                </div>
-                                <div class="item-content media-body">
-                                    <p>After Course <br> Certification</p>
-                                </div>
-                            </div>
-                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.6s">
-                                <div class="item-icon">
-                                    <img src="assets/images/icon/icon-2-6.webp" width="70" height="70" alt="Icon">
-                                </div>
-                                <div class="item-content media-body">
-                                    <p>Download <br> Prospectus</p>
-                                </div>
-                            </div>
+                        <div class="rating">
+                            <span>Rating: </span>
+                            <ul class="star">
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
+                        <div class="courses-link">
+                            <!-- <a class="apply" href="#">Online Apply</a> -->
+                            <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 courses-col">
+                    <div class="single-courses mt-30 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.6s">
+                        <a href="#" class="category">#Engineering</a>
+                        <h4 class="courses-title"><a href="courses-details.html">Civil Engineering</a></h4>
+                        <div class="duration-fee">
+                            <p class="duration">Duration: <span> 4 year</span></p>
+                            <!-- <p class="fee">Fee: <span> $540</span></p> -->
+                        </div>
+                        <div class="rating">
+                            <span>Rating: </span>
+                            <ul class="star">
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
+                        <div class="courses-link">
+                            <!-- <a class="apply" href="#">Online Apply</a> -->
+                            <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 courses-col">
+                    <div class="single-courses mt-30 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="1.6s">
+                        <a href="#" class="category">#Engineering</a>
+                        <h4 class="courses-title"><a href="courses-details.html">Electrical and Electronics Engineering.</a></h4>
+                        <div class="duration-fee">
+                            <p class="duration">Duration: <span> 4 year</span></p>
+                            <!-- <p class="fee">Fee: <span> $540</span></p> -->
+                        </div>
+                        <div class="rating">
+                            <span>Rating: </span>
+                            <ul class="star">
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
+                        <div class="courses-link">
+                            <!-- <a class="apply" href="#">Online Apply</a> -->
+                            <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!--====== Features Ends ======-->
-
-    <!--====== Top Course Start ======-->
-
-    <section class="top-courses-area">
-        <div class="container">            
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="section-title mt-40">
-                        <h2 class="title">Here is our <br> Top Courses</h2>
-                        <p>Even slightly believable. If you are going use a passage of Lorem Ipsum need</p>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-wrapper wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6 courses-col">
-                        <div class="single-courses-2 mt-30">
-                            <div class="courses-image">
-                                <a href="courses-details.html"><img src="assets/images/courses/courses-1.webp" width="270" height="170" alt="courses"></a>
-                            </div>
-                            <div class="courses-content">
-                                <a href="#" class="category">#Science</a>
-                                <h4 class="courses-title"><a href="courses-details.html">Computer Science & Engineering</a></h4>
-                                <div class="duration-rating">
-                                    <div class="duration-fee">
-                                        <p class="duration">Duration: <span> 4 year</span></p>
-                                        <p class="fee">Fee: <span> $540</span></p>
-                                    </div>
-                                    <div class="rating">
-                                        <span>Rating: </span>
-                                        <ul class="star">
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="courses-link">
-                                    <a class="apply" href="#">Online Apply</a>
-                                    <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 courses-col">
-                        <div class="single-courses-2 mt-30">
-                            <div class="courses-image">
-                                <a href="courses-details.html"><img src="assets/images/courses/courses-2.webp" width="270" height="170" alt="courses"></a>
-                            </div>
-                            <div class="courses-content">
-                                <a href="#" class="category">#Science</a>
-                                <h4 class="courses-title"><a href="courses-details.html">Bachelor of Business Administration</a></h4>
-                                <div class="duration-rating">
-                                    <div class="duration-fee">
-                                        <p class="duration">Duration: <span> 4 year</span></p>
-                                        <p class="fee">Fee: <span> $540</span></p>
-                                    </div>
-                                    <div class="rating">
-                                        <span>Rating: </span>
-                                        <ul class="star">
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="courses-link">
-                                    <a class="apply" href="#">Online Apply</a>
-                                    <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 courses-col">
-                        <div class="single-courses-2 mt-30">
-                            <div class="courses-image">
-                                <a href="courses-details.html"><img src="assets/images/courses/courses-3.webp" width="270" height="170" alt="courses"></a>
-                            </div>
-                            <div class="courses-content">
-                                <a href="#" class="category">#Science</a>
-                                <h4 class="courses-title"><a href="courses-details.html">Social & Digital Marketing</a></h4>
-                                <div class="duration-rating">
-                                    <div class="duration-fee">
-                                        <p class="duration">Duration: <span> 4 year</span></p>
-                                        <p class="fee">Fee: <span> $540</span></p>
-                                    </div>
-                                    <div class="rating">
-                                        <span>Rating: </span>
-                                        <ul class="star">
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="courses-link">
-                                    <a class="apply" href="#">Online Apply</a>
-                                    <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 courses-col">
-                        <div class="single-courses-2 mt-30">
-                            <div class="courses-image">
-                                <a href="courses-details.html"><img src="assets/images/courses/courses-4.webp" width="270" height="170" alt="courses"></a>
-                            </div>
-                            <div class="courses-content">
-                                <a href="#" class="category">#Science</a>
-                                <h4 class="courses-title"><a href="courses-details.html">Bachelor of Applied Mathematics</a></h4>
-                                <div class="duration-rating">
-                                    <div class="duration-fee">
-                                        <p class="duration">Duration: <span> 4 year</span></p>
-                                        <p class="fee">Fee: <span> $540</span></p>
-                                    </div>
-                                    <div class="rating">
-                                        <span>Rating: </span>
-                                        <ul class="star">
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="courses-link">
-                                    <a class="apply" href="#">Online Apply</a>
-                                    <a class="more" href="courses-details.html">Read more <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--====== Top Course Ends ======-->
+<!--====== Top Courses Ends ======-->
 
     <!--====== Campus Start ======-->
 
@@ -482,7 +359,7 @@
                         <span class="line"></span>
                         <p>Even slightly believable. If you are going use a passage of Lorem Ipsum need</p>
                         <h3 class="video-title">or watch video</h3>
-                        <a class="play video-popup" href="https://www.youtube.com/watch?v=0qHWub21h5c"><i class="fas fa-play"></i> <span>Play now</span></a>
+                        <a class="play video-popup" href="https://www.youtube.com/watch?v=f8jjPM6_e3Y"><i class="fas fa-play"></i> <span>Play now</span></a>
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -514,25 +391,25 @@
                 <div class="row">
                     <div class="col-sm-3 col-6 counter-col">
                         <div class="single-counter mt-30 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.2s">
-                            <span class="counter-count"><span class="count" data-count="3652">0</span> +</span>
+                            <span class="counter-count"><span class="count" data-count="1000">0</span> +</span>
                             <p>Students</p>
                         </div>
                     </div>
                     <div class="col-sm-3 col-6 counter-col">
                         <div class="single-counter mt-30 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.4s">
-                            <span class="counter-count"><span class="count" data-count="105">0</span> +</span>
+                            <span class="counter-count"><span class="count" data-count="50">0</span> +</span>
                             <p>Faculties</p>
                         </div>
                     </div>
                     <div class="col-sm-3 col-6 counter-col">
                         <div class="single-counter mt-30 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.6s">
-                            <span class="counter-count"><span class="count" data-count="120">0</span> +</span>
-                            <p>Branches</p>
+                            <span class="counter-count"><span class="count" data-count="20">0</span> +</span>
+                            <p>Classes</p>
                         </div>
                     </div>
                     <div class="col-sm-3 col-6 counter-col">
                         <div class="single-counter mt-30 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.8s">
-                            <span class="counter-count"><span class="count" data-count="30">0</span> +</span>
+                            <span class="counter-count"><span class="count" data-count="10">0</span> +</span>
                             <p>Awards win</p>
                         </div>
                     </div>
@@ -542,86 +419,48 @@
     </div>
 
     <!--====== Counter Ends ======-->
-
-    <!--====== Event Start ======-->
-
-    <section class="event-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="event-image mt-50">
-                        <img src="assets/images/event-1.webp" width="548" height="337" alt="Event">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="event-title mt-40">
-                        <div class="section-title-2">
-                            <h2 class="title">Upcoming <br> Events</h2>
-                            <span class="line"></span>
-                            <p>Even slightly believable. If you are going use a passage of Lorem Ipsum need obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure </p>
-                        </div>
-                    </div>
+   <!--====== Event Starts ======-->
+<section class="event-area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="event-image mt-50">
+                    <img src="assets/images/event-1.webp" width="548" height="337" alt="Event">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="event-wrapper-2">
-                        <div class="single-event-2  wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s">
-                            <div class="event-date">
-                                <span class="date">25 May 2020</span>
-                            </div>
-                            <div class="event-content">
-                                <h4 class="event-title-2"><a href="event-details.html">Micro Biological Workshop</a></h4>
-                                <p class="place">Place: Central Hall, New York</p>
-                                <span class="time">10.35 am to 1.00 pm</span>
-                                <a href="event-details.html" class="more">Read more <i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="single-event-2  wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.4s">
-                            <div class="event-date">
-                                <span class="date">25 May 2020</span>
-                            </div>
-                            <div class="event-content">
-                                <h4 class="event-title-2"><a href="event-details.html">Micro Biological Workshop</a></h4>
-                                <p class="place">Place: Central Hall, New York</p>
-                                <span class="time">10.35 am to 1.00 pm</span>
-                                <a href="event-details.html" class="more">Read more <i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="event-wrapper-2 ml-lg-auto">
-                        <div class="single-event-2  wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s">
-                            <div class="event-date">
-                                <span class="date">25 May 2020</span>
-                            </div>
-                            <div class="event-content">
-                                <h4 class="event-title-2"><a href="event-details.html">Micro Biological Workshop</a></h4>
-                                <p class="place">Place: Central Hall, New York</p>
-                                <span class="time">10.35 am to 1.00 pm</span>
-                                <a href="event-details.html" class="more">Read more <i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="single-event-2  wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.4s">
-                            <div class="event-date">
-                                <span class="date">25 May 2020</span>
-                            </div>
-                            <div class="event-content">
-                                <h4 class="event-title-2"><a href="event-details.html">Micro Biological Workshop</a></h4>
-                                <p class="place">Place: Central Hall, New York</p>
-                                <span class="time">10.35 am to 1.00 pm</span>
-                                <a href="event-details.html" class="more">Read more <i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
+            <div class="col-lg-6">
+                <div class="event-title mt-40">
+                    <div class="section-title-2">
+                        <h2 class="title">Upcoming <br> Events</h2>
+                        <span class="line"></span>
+                        <p>Even slightly believable. If you are going use a passage of Lorem Ipsum need obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!--====== Event Ends ======-->
-
+        <div class="row">
+            {% for event in events %}
+            <div class="col-lg-6">
+                <div class="event-wrapper-2">
+                    <div class="single-event-2 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <div class="event-date">
+                            <span class="date">{{ event.date|date:"d M Y" }}</span>
+                        </div>
+                        <div class="event-content">
+                            <h4 class="event-title-2"><a href="event-details.html">{{ event.name }}</a></h4>
+                            <p class="place">Place: {{ event.place }}</p>
+                            <span class="time">{{ event.start_time }} to {{ event.end_time }}</span>
+                            <p class="type">{{ event.type }}</p>
+                            <a href="event-details.html" class="more">Read more <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!--====== event end ======-->
     <!--====== Testimonial Start ======-->
 
     <section class="testimonials-area">
@@ -638,19 +477,19 @@
                             <div class="single-testimonial-content">
                                 <div class="content-text">
                                     <i class="fas fa-quote-right"></i>
-                                    <p>Best pleasure rationally encounter consequences that are very nice a again is there anyone who loves or desires to obtain pain of itself</p>
+                                    <p>CEK provided me with an exceptional education and a supportive community that helped me grow both academically and personally. I am grateful for my experience at this premier institution and highly recommend it to anyone seeking a top-notch education.</p>
                                 </div>
                             </div>
                             <div class="single-testimonial-content">
                                 <div class="content-text">
                                     <i class="fas fa-quote-right"></i>
-                                    <p>Best pleasure rationally encounter consequences that are very nice a again is there anyone who loves or desires to obtain pain of itself</p>
+                                    <p>CEK is more than just an engineering college - it is a community of learners and leaders. The college provides a supportive and inclusive environment where students can explore their passions, develop new skills, and make meaningful connections that will last a lifetime. I would recommend CEK to anyone seeking an enriching and fulfilling educational experience</p>
                                 </div>
                             </div>
                             <div class="single-testimonial-content">
                                 <div class="content-text">
                                     <i class="fas fa-quote-right"></i>
-                                    <p>Best pleasure rationally encounter consequences that are very nice a again is there anyone who loves or desires to obtain pain of itself</p>
+                                    <p>CEK stands out as one of the best engineering colleges in Kerala. With its excellent faculty, state-of-the-art facilities, and focus on academic excellence, it is no surprise that the college has produced some of the most successful professionals in the field. I feel fortunate to have been a part of such a prestigious institution</p>
                                 </div>
                             </div>
                         </div>
@@ -666,16 +505,16 @@
                                 <img src="assets/images/testimonials-3.webp" width="313" height="579" alt="Testimonials">
 
                                 <div class="content-meta">
-                                    <p class="name">Alex Smith</p>
-                                    <p class="designation">CEO, Xelopex Group</p>
+                                    <p class="name">Akash</p>
+                                    <p class="designation">CEK</p>
                                 </div>
                             </div>
                             <div class="single-testimonial-image">
                                 <img src="assets/images/testimonials-2.webp" width="313" height="579" alt="Testimonials">
 
                                 <div class="content-meta">
-                                    <p class="name">Alex Amith</p>
-                                    <p class="designation">CEO, Xelopex Group</p>
+                                    <p class="name">Nebin</p>
+                                    <p class="designation">CEK Student</p>
                                 </div>
                             </div>
                             <div class="single-testimonial-image">
@@ -695,110 +534,9 @@
 
     <!--====== Testimonial Ends ======-->
     
-    <!--====== Blog Start ======-->
-
-    <section class="blog-area-2">
-        <h4 class="trending-title">Trending blogs</h4>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="section-title-2">
-                        <h2 class="title">Explore top Post</h2>
-                        <span class="line"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="blog-wrapper">
-                <div class="row-wrapper blog-active">
-                    <div class="custom-col">
-                        <div class="single-blog mt-30">
-                            <div class="blog-image">
-                                <a href="blog-details.html">
-                                    <img src="assets/images/blog-1.webp" width="370" height="250" alt="blog">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <ul class="meta">
-                                    <li><a href="#">25 May, 2020</a></li>
-                                    <li><a href="#">By: Alex</a></li>
-                                    <li><a href="#">12 Comments</a></li>
-                                </ul>
-                                <h4 class="blog-title"><a href="blog-details.html">Latest Micro Biological basic Workshop for Research</a></h4>
-                                <a href="blog-details.html" class="more">Read more <i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-blog mt-30">
-                            <div class="blog-image">
-                                <a href="blog-details.html">
-                                    <img src="assets/images/blog-2.webp" width="370" height="250" alt="blog">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <ul class="meta">
-                                    <li><a href="#">25 May, 2020</a></li>
-                                    <li><a href="#">By: Alex</a></li>
-                                    <li><a href="#">12 Comments</a></li>
-                                </ul>
-                                <h4 class="blog-title"><a href="blog-details.html">Latest Micro Biological basic Workshop for Research</a></h4>
-                                <a href="blog-details.html" class="more">Read more <i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-blog mt-30">
-                            <div class="blog-image">
-                                <a href="blog-details.html">
-                                    <img src="assets/images/blog-3.webp" width="370" height="250" alt="blog">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <ul class="meta">
-                                    <li><a href="#">25 May, 2020</a></li>
-                                    <li><a href="#">By: Alex</a></li>
-                                    <li><a href="#">12 Comments</a></li>
-                                </ul>
-                                <h4 class="blog-title"><a href="blog-details.html">Latest Micro Biological basic Workshop for Research</a></h4>
-                                <a href="blog-details.html" class="more">Read more <i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="blog-left-sidebar.html" class="more-post">45+ more post</a>
-            </div>
-        </div>
-    </section>
-
-    <!--====== Blog Ends ======-->
     
-    <!--====== Newsletter Start ======-->
-
-    <section class="newsletter-area">
-        <div class="container">
-            <div class="newsletter-wrapper bg_cover wow zoomIn" data-wow-duration="1s" data-wow-delay="0.2s" style="background-image: url(assets/images/newsletter-bg-1.webp);">
-                <div class="row align-items-center">
-                    <div class="col-lg-5">
-                        <div class="section-title-2 mt-25">
-                            <h2 class="title">Subscribe our Newsletter</h2>
-                            <span class="line"></span>
-                            <p>Even slightly believable. If you are going use a passage of Lorem Ipsum need some</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="newsletter-form mt-30">
-                            <form action="#">
-                                <input type="text" placeholder="Enter your email here">
-                                <button class="main-btn main-btn-2">Subscribe now</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--====== Newsletter Ends ======-->
+    
+   
     
     <!--====== Footer Start ======-->
 
