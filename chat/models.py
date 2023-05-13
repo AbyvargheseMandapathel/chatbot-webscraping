@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 class Event(models.Model):
     name = models.CharField(max_length=255)
@@ -54,5 +56,23 @@ class Teachers(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Announcements(models.Model):
+    name = models.CharField(max_length=255)
+    date = models.DateField(default=timezone.now)
+    time = models.TimeField(default=timezone.now)
+    title = models.CharField(max_length=255)
+    circular = models.FileField(upload_to='circulars/', blank=True, null=True)
+    image = models.ImageField(upload_to='circulars_images/')
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.date = timezone.now().date()
+            self.time = timezone.now().time()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
 
 

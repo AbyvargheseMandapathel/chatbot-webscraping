@@ -1,8 +1,10 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from .chatbot import chatbot
-from .models import SliderImage, Event, Course , Teachers
+from .models import SliderImage, Event, Course , Teachers , Announcements
 from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+
 
 def home(request):
     sliders = SliderImage.objects.all()
@@ -44,3 +46,21 @@ def teachers(request):
     page = request.GET.get('page')
     teachers = paginator.get_page(page)
     return render(request, 'teachers.html', {'teachers': teachers})
+
+def announcements(request):
+    announcements_list = Announcements.objects.all().order_by('-date', '-time')
+    paginator = Paginator(announcements_list, 10)  # 10 items per page
+    page = request.GET.get('page')
+    announcements_page = paginator.get_page(page)
+    context = {'announcements_page': announcements_page}
+    return render(request, 'announcements.html', context)
+
+def teacher_details(request, teacher_id):
+    teacher = get_object_or_404(Teachers, pk=teacher_id)
+    return render(request, 'teacher_details.html', {'teacher': teacher})
+
+
+
+def course_detail(request, course_name):
+    course = get_object_or_404(Course, name=course_name)
+    return render(request, 'course_details.html', {'course': course})

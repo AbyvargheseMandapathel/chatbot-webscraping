@@ -70,7 +70,7 @@
                         <nav class="nav-menus-wrapper">
                             <ul class="nav-menu">
                                 <li>
-                                    <a class="active" href="{% url 'index' %}">Home</a>
+                                    <a class="active" href="">Home</a>
                                     <!-- <ul class="nav-dropdown nav-submenu">
                                         <li><a href="index.html">Home 01</a></li>
                                         <li><a class="active" href="index-2.html">Home 02</a></li>
@@ -123,13 +123,7 @@
                                     <a href="{% url 'teachers' %}">Teachers</a>
                                 </li>
                                 <li>
-                                    <a href="#">Blog</a>
-                                    <ul class="nav-dropdown nav-submenu">
-                                        <li><a href="blog.html">Blog </a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-right-sideba.html">Blog Right Sidebar</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                    </ul>
+                                    <a href="{% url 'announcements' %}">Announcements</a>
                                 </li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
@@ -192,7 +186,7 @@
                                     </div>
                                     <div class="courses-content">
                                         <a href="#" class="category">#Engineering</a>
-                                        <h4 class="courses-title"><a href="courses-details.html">{{ course.name }}</a></h4>
+                                        <h4 class="courses-title"><a href="{% url 'course_detail' course.name %}">{{ course.name }}</a></h4>
                                         <div class="duration-rating">
                                             <div class="duration-fee">
                                                 <p class="duration">Duration: <span>{{ course.duration }}</span></p>
@@ -200,7 +194,7 @@
                                             </div>
                                         </div>
                                         <div class="courses-link">
-                                            <a class="more" href="#">Read more <i class="fas fa-chevron-right"></i></a>
+                                            <a class="more" href="{% url 'course_detail' course.name %}">Read more <i class="fas fa-chevron-right"></i></a>
                                         </div>
                                     </div>
                                 </div>

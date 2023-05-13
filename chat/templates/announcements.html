@@ -143,52 +143,74 @@
     </header>
 
     <!--====== Header Ends ======-->
+    
     <!--====== Page Banner Start ======-->
 
     <section class="page-banner">
         <div class="page-banner-bg bg_cover" style="background-image: url(assets/images/page-banner.webp);">
             <div class="container">
                 <div class="banner-content text-center">
-                    <h2 class="title">Events</h2>
+                    <h2 class="title">Announcements</h2>
                 </div>
             </div>
         </div>
     </section>
 
     <!--====== Page Banner Ends ======-->
-<!--====== Event Start ======-->
 
-<section class="event-page">
+    <!--====== Blog Start ======-->
+
+   <!--====== Blog Start ======-->
+
+<section class="blog-page">
     <div class="container">
         <div class="row">
-            {% for event in events %}
-            <div class="col-lg-3 col-sm-6">
-                <div class="single-event text-center mt-30">
-                    <span class="time">{{ event.time }}</span>
-                    <span class="date">{{ event.date }}</span>
-                    <h4 class="event-title"><a href="">{{ event.name }}</a></h4>
-                    <p class="place">Place: {{ event.place }}</p>
-                    <a href="" class="more">Read more <i class="far fa-chevron-right"></i></a>
+            {% for announcement in announcements_page %}
+            <div class="col-lg-4 col-md-6">
+                <div class="single-blog mt-30">
+                    <div class="blog-image">
+                        <a href="blog-details.html">
+                            <img src="{{ announcement.image.url }}" width="370" height="250" alt="blog">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <ul class="meta">
+                            <li><a href="#">{{ announcement.date|date:"d F Y" }}</a></li>
+                            <!--<li><a href="#">By: Alex</a></li>
+                            <li><a href="#">12 Comments</a></li>-->
+                        </ul>
+                        <h4 class="blog-title"><a href="blog-details.html">{{ announcement.title }}</a></h4>
+                        <a href="{{ announcement.circular.url }}" class="more">Read more <i class="fas fa-chevron-right"></i></a>
+                    </div>
                 </div>
             </div>
+            {% empty %}
+            <p>No blog posts available.</p>
             {% endfor %}
-         </div>
+        </div>
         <ul class="pagination-items text-center">
-            {% if events.has_previous %}
-            <li><a href="?page=1">&laquo;</a></li>
-            <li><a href="?page={{ events.previous_page_number }}">{{ events.previous_page_number }}</a></li>
+            {% if announcements_page.has_previous %}
+            <li><a href="?page={{ announcements_page.previous_page_number }}">« Previous</a></li>
             {% endif %}
-            <li><a class="active" href="?page={{ events.number }}">{{ events.number }}</a></li>
-            {% if events.has_next %}
-            <li><a href="?page={{ events.next_page_number }}">{{ events.next_page_number }}</a></li>
-            <li><a href="?page={{ events.paginator.num_pages }}">&raquo;</a></li>
+            {% for i in announcements_page.paginator.page_range %}
+            {% if announcements_page.number == i %}
+            <li><a class="active" href="?page={{ i }}">{{ i }}</a></li>
+            {% else %}
+            {% if i > announcements_page.number|add:'-3' and i < announcements_page.number|add:'3' %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% if announcements_page.has_next %}
+            <li><a href="?page={{ announcements_page.next_page_number }}">Next »</a></li>
             {% endif %}
         </ul>
     </div>
 </section>
 
-<!--====== Event Ends ======-->
+<!--====== Blog Ends ======-->
 
+    <!--====== Blog Ends ======-->
     
     <!--====== Newsletter Start ======-->
 

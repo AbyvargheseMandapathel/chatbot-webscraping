@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SliderImage, Event, Course, Teachers
+from .models import SliderImage, Event, Course, Teachers ,Announcements
 
 @admin.register(SliderImage)
 class SliderImageAdmin(admin.ModelAdmin):
@@ -28,4 +28,5 @@ class CourseAdmin(admin.ModelAdmin):
         
 
 admin.site.register(Teachers)
+admin.site.register(Announcements)
 

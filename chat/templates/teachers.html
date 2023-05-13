@@ -70,7 +70,7 @@
                         <nav class="nav-menus-wrapper">
                             <ul class="nav-menu">
                                 <li>
-                                    <a class="active" href="{% url 'index' %}">Home</a>
+                                    <a class="active" href="">Home</a>
                                     <!-- <ul class="nav-dropdown nav-submenu">
                                         <li><a href="index.html">Home 01</a></li>
                                         <li><a class="active" href="index-2.html">Home 02</a></li>
@@ -123,13 +123,7 @@
                                     <a href="{% url 'teachers' %}">Teachers</a>
                                 </li>
                                 <li>
-                                    <a href="#">Blog</a>
-                                    <ul class="nav-dropdown nav-submenu">
-                                        <li><a href="blog.html">Blog </a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-right-sideba.html">Blog Right Sidebar</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                    </ul>
+                                    <a href="{% url 'announcements' %}">Announcements</a>
                                 </li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
@@ -149,7 +143,6 @@
     </header>
 
     <!--====== Header Ends ======-->
-    
     <!--====== Page Banner Start ======-->
 
     <section class="page-banner">
@@ -180,7 +173,7 @@
               </a>
             </div>
             <div class="teacher-content">
-              <h4 class="name"><a href="teacher-details.html">{{ teacher.name }}</a></h4>
+              <h4 class="name"><a href="{% url 'teacher_details' teacher.id %}">{{ teacher.name }}</a></h4>
               <span class="designation">{{ teacher.designation }}</span>
             </div>
           </div>
