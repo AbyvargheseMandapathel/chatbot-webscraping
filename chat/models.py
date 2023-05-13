@@ -4,6 +4,7 @@ from django.utils import timezone
 
 class Event(models.Model):
     name = models.CharField(max_length=255)
+    description = models.TextField(default='Unknown')
     image = models.ImageField(upload_to='event_images/')
     ticket_fee = models.DecimalField(max_digits=8, decimal_places=2)
     date = models.DateField()
@@ -36,6 +37,7 @@ class Course(models.Model):
     pso = models.TextField()
     duration = models.CharField(max_length=50, default='Unknown')
     semester = models.IntegerField(default=0)
+    credits = models.IntegerField(default=120)
 
     def __str__(self):
         return self.name

@@ -62,7 +62,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3">
                         <div class="header-logo">
-                            <a href="index-2.html"><img src="assets/images/CEK.png" width="250" height="88" alt="Logo"></a>
+                            <a href="index-2.html"><img src="{% static 'images/CEK.png' %}" width="250" height="88" alt="Logo"></a>
                         </div>
                     </div>
                     <div class="col-lg-7 position-static">
@@ -143,52 +143,117 @@
     </header>
 
     <!--====== Header Ends ======-->
+    
     <!--====== Page Banner Start ======-->
 
     <section class="page-banner">
         <div class="page-banner-bg bg_cover" style="background-image: url(assets/images/page-banner.webp);">
             <div class="container">
                 <div class="banner-content text-center">
-                    <h2 class="title">Events</h2>
+                    <h2 class="title">{{event.name}}</h2>
                 </div>
             </div>
         </div>
     </section>
 
     <!--====== Page Banner Ends ======-->
-<!--====== Event Start ======-->
 
-<section class="event-page">
-    <div class="container">
-        <div class="row">
-            {% for event in events %}
-            <div class="col-lg-3 col-sm-6">
-                <div class="single-event text-center mt-30">
-                    <span class="time">{{ event.time }}</span>
-                    <span class="date">{{ event.date }}</span>
-                    <h4 class="event-title"><a href="">{{ event.name }}</a></h4>
-                    <p class="place">Place: {{ event.place }}</p>
-                    <a href="{% url 'events_detail' event.name %}" class="more">Know more <i class="far fa-chevron-right"></i></a>
+    <!--====== Event Details Start ======-->
+
+    <section class="event-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="event-details-content mt-50">
+                        <img src="{{event.image.url }}" width="845" height="533" alt="Event Details">
+
+                        <h2 class="title">{{event.name}}</h2>
+
+                        <p>{{event.description}}</p>
+
+                        <h5 class="sub-title">Event Overview</h5>
+
+                        <p>{{event.overview}}</p>
+
+                        <div class="event-schedule">
+                            <h5 class="sub-title">Event Schedule</h5>
+
+                            <p> Schedule of {{event.name}}</p>
+
+                            <div class="event-schedule-table table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="time">Time</th>
+                                            <th class="topics">Topics</th>
+                                            <th class="speakers">Speakers</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="time">10.00 am to 10.30 am</td>
+                                            <td class="topics">Registration and T-shirt distribution</td>
+                                            <td class="speakers">-----------</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="time">10.35 am to 11.00 am</td>
+                                            <td class="topics">Latest version of WordPress and it's Benefit</td>
+                                            <td class="speakers">Alister Camble</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="time">11.05 am to 11.30 am</td>
+                                            <td class="topics">Snacks & Tea Break</td>
+                                            <td class="speakers">-----------</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="time">11.35 am to 12.35 pm</td>
+                                            <td class="topics">How to use latest version of WordPress in our website</td>
+                                            <td class="speakers">Ethan Smith</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="time">12.40 pm to 1.45 pm</td>
+                                            <td class="topics">Future of WordPress</td>
+                                            <td class="speakers">Keth Williams</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="time">1.50 pm to 2.15 pm</td>
+                                            <td class="topics">Thanks giving & closing </td>
+                                            <td class="speakers">Organizer</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="event-sidebar pt-20">
+                        <div class="event-features mt-30">
+                            <div class="sidebar-title">
+                                <h4 class="title">Event Information</h4>
+                            </div>
+                            <ul class="event-features-items">
+                                <li>Ticket Fee <strong>{{event.ticket_fee}}</strong></li>
+                                <li>Date <strong>{{event.date}}</strong></li>
+                                <li>Start Time <strong>{{event.start_time}}</strong></li>
+                                <li>End Time <strong>{{event.end_time}}</strong></li>
+                                <li>Place <strong>{{event.place}}</strong></li>
+                                <li>Seat <strong>{{event.seat}}</strong></li>
+                            </ul>
+                            <!-- <div class="sidebar-btn">
+                                <a class="main-btn" href="#">Buy Ticket</a>
+                            </div> -->
+                        </div>
+
+                       
+                    </div>
                 </div>
             </div>
-            {% endfor %}
-         </div>
-        <ul class="pagination-items text-center">
-            {% if events.has_previous %}
-            <li><a href="?page=1">&laquo;</a></li>
-            <li><a href="?page={{ events.previous_page_number }}">{{ events.previous_page_number }}</a></li>
-            {% endif %}
-            <li><a class="active" href="?page={{ events.number }}">{{ events.number }}</a></li>
-            {% if events.has_next %}
-            <li><a href="?page={{ events.next_page_number }}">{{ events.next_page_number }}</a></li>
-            <li><a href="?page={{ events.paginator.num_pages }}">&raquo;</a></li>
-            {% endif %}
-        </ul>
-    </div>
-</section>
+        </div>
+    </section>
 
-<!--====== Event Ends ======-->
-
+    <!--====== Event Details Ends ======-->
     
     <!--====== Newsletter Start ======-->
 
@@ -353,7 +418,7 @@
 
     <!--====== Main Activation  js ======-->
     <script src="assets/js/main.js"></script>
-
+    
     
 </body>
 

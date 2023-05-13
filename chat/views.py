@@ -1,10 +1,50 @@
+import requests
+from bs4 import BeautifulSoup
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from .chatbot import chatbot
-from .models import SliderImage, Event, Course , Teachers , Announcements
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from .chatbot import chatbot
+from .models import SliderImage, Event, Course, Teachers, Announcements
 
+# Define the URL of the webpage to scrape for FAQs
+FAQ_URL = reverse("faq")
+
+# Send a GET request to the FAQ URL and parse the HTML response
+faq_response = requests.get(FAQ_URL)
+faq_soup = BeautifulSoup(faq_response.content, 'html.parser')
+
+# Find all the FAQ cards on the page
+faq_cards = faq_soup.find_all('div', class_='card')
+
+# Define a function to search for an answer to a question in the FAQ cards
+def search_faq(question, faq_cards):
+    # Loop over each FAQ card
+    for card in faq_cards:
+        # Get the question and answer text from the card
+        card_question = card.find('a').text
+        card_answer = card.find('p').text
+        # If the card's question matches the user's question, return the answer
+        if question.lower() in card_question.lower():
+            return card_answer
+    # If no matching question is found, return None
+    return None
+
+# Define a function to handle user input and return a response
+def handle_input(user_input, faq_cards):
+    # Search for an answer to the user's question in the FAQ cards
+    answer = search_faq(user_input, faq_cards)
+    # If an answer is found, return it
+    if answer:
+        return answer
+    # If no answer is found, use the chatbot
+    else:
+        response = chatbot(requests, response)
+        if response == 'I am sorry, but I am not able to understand your question.':
+            return "I'm sorry, I don't know the answer to that question."
+        else:
+            return response
 
 def home(request):
     sliders = SliderImage.objects.all()
@@ -19,7 +59,8 @@ def get_response(request):
     if request.method == 'GET':
         message = request.GET.get('message')
         if message:
-            response = chatbot(request, message)
+            # Handle user input and return a response
+            response = handle_input(message, faq_cards)
             return HttpResponse(response)
         else:
             return HttpResponse('Please provide a message')
@@ -64,3 +105,10 @@ def teacher_details(request, teacher_id):
 def course_detail(request, course_name):
     course = get_object_or_404(Course, name=course_name)
     return render(request, 'course_details.html', {'course': course})
+
+def events_detail(request, events_name):
+    event = get_object_or_404(Event, name=events_name)
+    return render(request, 'events_details.html', {'event': event})
+
+def faq(request):
+    return render(request, 'faq.html')
