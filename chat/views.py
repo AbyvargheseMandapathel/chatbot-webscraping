@@ -1,12 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
-from django.core.paginator import Paginator
-from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
 
 from .chatbot import chatbot
 from .models import SliderImage, Event, Course, Teachers, Announcements
+
 
 # Define the URL of the webpage to scrape for FAQs
 FAQ_URL = 'https://chatbot.abyvarghese2000.repl.co/'
@@ -18,7 +18,6 @@ faq_soup = BeautifulSoup(faq_response.content, 'html.parser')
 # Find all the FAQ cards on the page
 faq_cards = faq_soup.find_all('div', class_='card')
 
-# Define a function to search for an answer to a question in the FAQ cards
 # Define a function to search for an answer to a question in the FAQ cards
 def search_faq(question, faq_cards):
     # Loop over each FAQ card
@@ -34,22 +33,21 @@ def search_faq(question, faq_cards):
     # If no matching question is found, return None
     return None
 
-
-
 # Define a function to handle user input and return a response
 def handle_input(user_input, faq_cards):
-    # Search for an answer to the user's question in the FAQ cards
     answer = search_faq(user_input, faq_cards)
-    # If an answer is found, return it
     if answer:
         return answer
-    # If no answer is found, use the chatbot
     else:
-        response = chatbot(requests, response)
-        if response == 'I am sorry, but I am not able to understand your question.':
-            return "I'm sorry, I don't know the answer to that question."
+        response = chatbot(request, message=user_input)
+        if response == '':
+            return "I'm sorry, I don't understand your question. Could you please rephrase it?"
         else:
             return response
+
+    
+
+
 
 def home(request):
     sliders = SliderImage.objects.all()
