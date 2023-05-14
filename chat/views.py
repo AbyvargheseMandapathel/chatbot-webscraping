@@ -4,12 +4,12 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from django.urls import reverse
+
 from .chatbot import chatbot
 from .models import SliderImage, Event, Course, Teachers, Announcements
 
 # Define the URL of the webpage to scrape for FAQs
-FAQ_URL = reverse("faq")
+FAQ_URL = 'https://chatbot.abyvarghese2000.repl.co/'
 
 # Send a GET request to the FAQ URL and parse the HTML response
 faq_response = requests.get(FAQ_URL)
