@@ -19,17 +19,22 @@ faq_soup = BeautifulSoup(faq_response.content, 'html.parser')
 faq_cards = faq_soup.find_all('div', class_='card')
 
 # Define a function to search for an answer to a question in the FAQ cards
+# Define a function to search for an answer to a question in the FAQ cards
 def search_faq(question, faq_cards):
     # Loop over each FAQ card
     for card in faq_cards:
         # Get the question and answer text from the card
         card_question = card.find('a').text
         card_answer = card.find('p').text
-        # If the card's question matches the user's question, return the answer
-        if question.lower() in card_question.lower():
+        # Check if the user's query is in the card's question or any associated tags
+        tags = card.find_all('span', class_='tags')
+        tag_names = set([tag.text.strip() for tag in tags])
+        if question.lower() in card_question.lower() or question.lower() in tag_names:
             return card_answer
     # If no matching question is found, return None
     return None
+
+
 
 # Define a function to handle user input and return a response
 def handle_input(user_input, faq_cards):
